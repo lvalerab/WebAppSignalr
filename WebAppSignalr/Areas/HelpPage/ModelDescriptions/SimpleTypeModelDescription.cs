@@ -1,0 +1,6 @@
+namespace WebAppSignalr.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}
