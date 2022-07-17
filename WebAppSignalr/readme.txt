@@ -1,0 +1,1 @@
+﻿https://docs.microsoft.com/es-es/aspnet/signalr/overview/older-versions/signalr-1x-hubs-api-guide-server#signalrurl
