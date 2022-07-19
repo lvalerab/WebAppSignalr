@@ -1,0 +1,38 @@
+﻿@{ 
+
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pagina ejemplo singalr</title>
+    </head>
+    <body>
+        <script src="~/Scripts/jquery-1.12.4.js"></script>
+        <script src="~/Scripts/jquery.signalR-1.2.2.js"></script>
+        <!--Referencia al js autogenerado-->
+        <script src="/signalr/hubs"></script>
+        <div id="ContenedorMensajes">
+
+        </div>
+        <div>
+            <input id="TBoxMensaje" type="text" /><br />
+            <button id="BtnEnviar">Enviar</button>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                var colas = $.connection.colaAtencionClientesHub;
+                colas.client.onEnviarMensajeATodos = function (mensaje) {
+                    $('#ContenedorMensajes').append(mensaje + "<br/>" + "<hr/>");
+                };
+
+                $.connection.hub.start().done(function () {
+                    $('#BtnEnviar').on('click', function (evt) {
+                        colas.server.enviarMensajeATodos($('#TBoxMensaje').val());
+                        $('#TBoxMensaje').val('').focus();
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

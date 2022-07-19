@@ -14,7 +14,7 @@ namespace WebAppSignalr
     {
         protected void Application_Start()
         {
-            RouteTable.Routes.MapHubs("/hubs", SignalrConfiguration.Config());
+            RouteTable.Routes.MapHubs();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
