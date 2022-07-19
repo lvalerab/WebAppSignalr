@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.12.4.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery.signalR-1.2.2.js"></script>
+    <script src="/signalr/hubs"></script>
+    <div id="ContenedorMensajes">
+    
+    </div>
+    <div>
+        <input id="TBoxMensaje" type="text" />
+        <button id="BtnEnviar">Enviar</button>
+    </div>
+    <script type="text/javascript">
+        var colaAtencion = $.connection.colaAtencionClientesHub;
+        colaAtencion.client.onRecivirMensaje = function (mensaje) {
+            $("#ContenedorMensajes").append(mensaje + "<br/>" + "<hr/>");
+        }
+
+        $.connection.hub.start().done(function () {
+            $('#BtnEnviar').on('click', function (evt) {
+                colaAtencion.server.enviarMensaje($('#TBoxMensaje').val());
+                $('#TBoxMensaje').val('').focus();
+            });
+        });
+    </script>
+</body>
+</html>

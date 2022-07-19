@@ -11,6 +11,11 @@ namespace WebAppSignalr.Hubs
     {
 
         public List<OperadorModel> operadores { get; set; }
+
+        public void EnviarMensaje(string mensaje)
+        {
+            Clients.All.OnRecivirMensaje(mensaje);
+        }
         
         public void ValidarUsuario(string codUsuario, string nombre)
         {
